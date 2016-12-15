@@ -1,4 +1,4 @@
-package TileEngine;
+package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Dimension;
 import java.awt.Point;

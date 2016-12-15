@@ -1,4 +1,4 @@
-package TileEngine;
+package com.neet.DiamondHunter.TileEngine;
 
 //hi stupid1
 

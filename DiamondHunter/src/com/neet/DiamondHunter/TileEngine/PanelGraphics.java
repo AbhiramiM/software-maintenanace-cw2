@@ -1,4 +1,4 @@
-package TileEngine;
+package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
