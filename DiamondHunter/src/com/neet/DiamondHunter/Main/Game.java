@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import com.neet.DiamondHunter.TileEngine.PanelGraphics;
 
 public class Game {
-	
 	public static void main(String[] args) {
 		
 		JFrame window = new JFrame("Diamond Hunter");
