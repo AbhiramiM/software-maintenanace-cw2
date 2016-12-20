@@ -4,13 +4,10 @@
 
 package com.neet.DiamondHunter.Main;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
-import com.neet.DiamondHunter.TileEngine.PanelGraphics;
-
 public class Game {
+	
 	public static void main(String[] args) {
 		
 		JFrame window = new JFrame("Diamond Hunter");
@@ -23,6 +20,7 @@ public class Game {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 	
 }

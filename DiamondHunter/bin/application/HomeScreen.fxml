@@ -8,12 +8,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="628.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenControl">
+<Pane fx:id="p" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeScreenControl">
    <children>
-      <Button layoutX="56.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickPlay" text="Play Game" />
-      <Button layoutX="274.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickView" text="View Map" />
-      <Button layoutX="459.0" layoutY="469.0" mnemonicParsing="false" onAction="#onClickEdit" text="Edit Position" />
-      <Text fontSmoothingType="LCD" layoutX="145.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DIAMOND HUNTER" textAlignment="CENTER">
+      <Button fx:id="pg" layoutX="56.0" layoutY="469.0" mnemonicParsing="false" text="Play Game" />
+      <Button fx:id="vm" layoutX="274.0" layoutY="469.0" mnemonicParsing="false" text="View Map" />
+      <Button fx:id="ep" layoutX="459.0" layoutY="469.0" mnemonicParsing="false" text="Edit Position" />
+      <Text fx:id="dh" fontSmoothingType="LCD" layoutX="145.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DIAMOND HUNTER" textAlignment="CENTER">
          <font>
             <Font size="36.0" />
          </font>
@@ -31,4 +31,4 @@
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
-</fx:root>
+</Pane>
