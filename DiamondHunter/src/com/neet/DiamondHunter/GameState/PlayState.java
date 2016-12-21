@@ -186,6 +186,22 @@ public class PlayState extends GameState {
 		
 	}
 	
+	private void populateItems(int x,int y,int a, int b) {
+		
+		Item item;
+		
+		item = new Item(tileMap);
+		item.setType(Item.BOAT);
+		item.setTilePosition(x, y);
+		items.add(item);
+		
+		item = new Item(tileMap);
+		item.setType(Item.AXE);
+		item.setTilePosition(a, b);
+		items.add(item);
+	}
+	
+	
 	public void update() {
 		
 		// check keys
