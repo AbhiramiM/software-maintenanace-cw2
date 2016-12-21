@@ -2,6 +2,7 @@ package application;
 
 
 import com.neet.DiamondHunter.Main.Game;
+import com.neet.DiamondHunter.TileEngine.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,13 +12,13 @@ public class Controller {
 	@FXML private Button btnPlay;
 	
 	 @FXML protected void Play(ActionEvent event) {
-	        //System.out.println("Sign in button pressed");
+	     
 		 	Game.main(null);
 	    }
 	 
 	 @FXML private Button btnShow;
 	 @FXML protected void ShowMap(ActionEvent event) {
-	        System.out.println("Sign in button pressed");
-		 	//Game.main(null);
+	        
+			com.neet.DiamondHunter.TileEngine.Main.main(null);
 	    }
 }
