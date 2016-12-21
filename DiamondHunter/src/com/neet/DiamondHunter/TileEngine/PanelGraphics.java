@@ -8,14 +8,14 @@ public class PanelGraphics extends JPanel
 	
 	private TileLayer layer;
 	
-	public PanelGraphics ()
+	public PanelGraphics ()									//constructor class
 	{
-		layer = TileLayer.loadMap("testmap.map");
+		layer = TileLayer.loadMap("testmap.map");			//reads from the text file testmap.map. Loads data into layer.
 	}
 	
-	@Override public void paintComponent(Graphics g)
+	@Override public void paintComponent(Graphics g)		//Override painComponent when using JPanel
 	{
-		super.paintComponent(g);
+		super.paintComponent(g);							//calls paintComponent from JPanel
 		
 		layer.DrawLayer(g);
 	}
