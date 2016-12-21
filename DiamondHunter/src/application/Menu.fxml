@@ -29,6 +29,7 @@
                   </RadialGradient>
                </fill>
             </Text>
+            <Button fx:id="btnEdit" layoutX="241.0" layoutY="393.0" mnemonicParsing="false" onAction="#Edit" text="Edit Map" />
          </children>
       </Pane>
    </children>

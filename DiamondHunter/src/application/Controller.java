@@ -7,7 +7,11 @@ import com.neet.DiamondHunter.TileEngine.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class Controller {
 	
@@ -24,4 +28,21 @@ public class Controller {
 	        
 			com.neet.DiamondHunter.TileEngine.Main.main(null);	//method showMap() calls main function in Main.java. Shows map with tilesets.
 	    }
+	 
+	 @FXML private Button btnEdit;
+	private Stage stage;
+	 @FXML protected void Edit(ActionEvent event){
+			try {
+				Parent root  = FXMLLoader.load(getClass().getResource("Positions.fxml"));				//FXMLLoader loads Menu.fxml
+				Scene scene = new Scene(root,600,600);												//Determines size of dialogue box
+				//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				stage=(Stage) btnEdit.getScene().getWindow();
+				stage.setScene(scene);
+				stage.show();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+	 }
+	 
+	 
 }
