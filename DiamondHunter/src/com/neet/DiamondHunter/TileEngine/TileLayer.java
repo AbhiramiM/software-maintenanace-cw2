@@ -115,8 +115,9 @@ public class TileLayer
 					
 					if(index > (tileSet.getWidth() / Engine.TILE_WIDTH) - 1)	
 					{
-						exceedWidth++;		//starts from tile in the second row
-						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		//sets index to second row
+					//to make sure index doesn't exceed width of entire tile set. -1 is included since array index starts at 0
+						exceedWidth++;		
+						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		//index is updated to first tile in the beginning of second row
 					}
 					//draws the corners of each tile rectangle using x, y, TILE_WDTH, and TILE_HEIGHT values
 					g.drawImage(tileSet, x * Engine.TILE_WIDTH, y * Engine.TILE_HEIGHT, (x * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (y * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, index * Engine.TILE_WIDTH, exceedWidth * Engine.TILE_HEIGHT, (index * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (exceedWidth * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, null);
