@@ -8,6 +8,7 @@ package com.neet.DiamondHunter.GameState;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import com.neet.DiamondHunter.Entity.Diamond;
 import com.neet.DiamondHunter.Entity.Item;
@@ -20,8 +21,13 @@ import com.neet.DiamondHunter.Manager.GameStateManager;
 import com.neet.DiamondHunter.Manager.JukeBox;
 import com.neet.DiamondHunter.Manager.Keys;
 import com.neet.DiamondHunter.TileMap.TileMap;
+import application.PositionController;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class PlayState extends GameState {
+	
 	
 	// player
 	private Player player;
@@ -172,21 +178,54 @@ public class PlayState extends GameState {
 	
 	private void populateItems() {
 		
+		PositionController pos = new PositionController();
+		
+		//String boatpos = pos.getBoatPos();
+		//String axepos = pos.getAxePos();
+		
+		int x,y,b;
+		int a = 3;
+		
+		System.out.printf("%s",pos.getBoatPos());
+		System.out.printf("%s",pos.getBoatPos());
+		System.out.printf("%d", a);
+		
+		/*
+		if (axepos == "" && boatpos == ""){
+			x=12;
+			y=4;
+			a=26;
+			b=37;
+			
+		}
+		else{
+		StringTokenizer stb = new StringTokenizer(boatpos, " ");
+		  x = Integer.parseInt(stb.nextToken());
+		  y = Integer.parseInt(stb.nextToken());
+		 
+		StringTokenizer sta = new StringTokenizer(axepos, " ");
+		  a = Integer.parseInt(sta.nextToken());
+		  b = Integer.parseInt(sta.nextToken());
+		}
+		*/
 		Item item;
+		
 		
 		item = new Item(tileMap);
 		item.setType(Item.AXE);
 		item.setTilePosition(26, 37);
+		//item.setTilePosition(a, b);
 		items.add(item);
 		
 		item = new Item(tileMap);
 		item.setType(Item.BOAT);
 		item.setTilePosition(12, 4);
+		//item.setTilePosition(x, y);
 		items.add(item);
 		
 	}
-	
-	private void populateItems(int x,int y,int a, int b) {
+/*
+	public void populateItems(int x,int y,int a, int b) {
 		
 		Item item;
 		
@@ -200,7 +239,7 @@ public class PlayState extends GameState {
 		item.setTilePosition(a, b);
 		items.add(item);
 	}
-	
+	*/
 	
 	public void update() {
 		
