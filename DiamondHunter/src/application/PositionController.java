@@ -1,5 +1,7 @@
 package application;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import com.neet.DiamondHunter.GameState.*;
@@ -13,12 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class PositionController {
-	
+	/*
 	public PositionController(){
 		super();
 		String bpos;
 		String apos;
-	}
+	}*/
 	
 	@FXML private Button btnConfirm;
 	@FXML private Button btnCancel;	
@@ -35,7 +37,19 @@ public class PositionController {
 		//axepos= txtAxe.getText();
 		
 		boatpos=txtBoat.getText();
-		axepos=txtBoat.getText();
+		axepos=txtAxe.getText();
+		
+		
+		try{
+		    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");
+		    writer.println(boatpos);
+		    writer.println(axepos);
+		    writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Game.main(null);
 		
 				/* 
 		
@@ -48,23 +62,23 @@ public class PositionController {
 			 int b = Integer.parseInt(sta.nextToken());
 			 */
 
-			 Game.main(null);
+			 //Game.main(null);
 		 	//System.out.printf("%d\n%d\n%d\n%d",x,y,a,b);							
 	    }
 	 
 	 @FXML protected void Cancel(ActionEvent event) {			
 		//Platform.exit();
-		 System.out.printf(this.getBoatPos());
-		 System.out.printf(this.getAxePos());
+		 System.out.printf(boatpos);
+		 System.out.printf(axepos);
 		
 	    }
-	 public String getBoatPos(){
+/*	 public String getBoatPos(){
 		 return this.boatpos;
 	 }
 	
 	 public String getAxePos(){
 		 return this.axepos;
-	 }
+	 }*/
 	/* public int Convert(String string){
 		 StringTokenizer st = new StringTokenizer(string, " ");
 		 int x = Integer.parseInt(st.nextToken());

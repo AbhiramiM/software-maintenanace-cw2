@@ -7,7 +7,10 @@ package com.neet.DiamondHunter.GameState;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import com.neet.DiamondHunter.Entity.Diamond;
@@ -178,17 +181,17 @@ public class PlayState extends GameState {
 	
 	private void populateItems() {
 		
-		PositionController pos = new PositionController();
+		//PositionController pos = new PositionController();
 		
 		//String boatpos = pos.getBoatPos();
 		//String axepos = pos.getAxePos();
 		
-		int x,y,b;
-		int a = 3;
+	
+	
 		
-		System.out.printf("%s",pos.getBoatPos());
-		System.out.printf("%s",pos.getBoatPos());
-		System.out.printf("%d", a);
+		//System.out.printf("%s",pos.getBoatPos());
+	//	System.out.printf("%s",pos.getBoatPos());
+	//	System.out.printf("%d", a);
 		
 		/*
 		if (axepos == "" && boatpos == ""){
@@ -208,19 +211,43 @@ public class PlayState extends GameState {
 		  b = Integer.parseInt(sta.nextToken());
 		}
 		*/
+
+		int x=0,y=0,a=0,b=0;
+			
+		try {
+			Scanner position = new Scanner(new File("Position.txt"));
+			if (position!=null){
+				x=position.nextInt();
+				y=position.nextInt();
+				a=position.nextInt();
+				b=position.nextInt();
+			}	
+			
+		} 
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+	
+			x=12;
+			y=4;
+			a=26;
+			b=37;
+			e.printStackTrace();
+		}
+		
+		
 		Item item;
 		
 		
 		item = new Item(tileMap);
 		item.setType(Item.AXE);
-		item.setTilePosition(26, 37);
-		//item.setTilePosition(a, b);
+		//item.setTilePosition(26, 37);
+		item.setTilePosition(a, b);
 		items.add(item);
 		
 		item = new Item(tileMap);
 		item.setType(Item.BOAT);
-		item.setTilePosition(12, 4);
-		//item.setTilePosition(x, y);
+		//item.setTilePosition(12, 4);
+		item.setTilePosition(x, y);
 		items.add(item);
 		
 	}
