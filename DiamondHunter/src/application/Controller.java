@@ -33,10 +33,6 @@ public class Controller {
 			window.pack();
 			window.setLocationRelativeTo(null);
 			window.setVisible(true);
-			//window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		 
-		 
-		 	//Game.main(null);								//method Play() calls main function in Game.java. Runs the game.
 	    }
 	 
 	 @FXML private Button btnShow;							//initialise button Show Map with id btnShow
@@ -55,7 +51,6 @@ public class Controller {
 			try {
 				Parent root  = FXMLLoader.load(getClass().getResource("Positions.fxml"));				//FXMLLoader loads Menu.fxml
 				Scene scene = new Scene(root,600,600);												//Determines size of dialogue box
-				//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				stage=(Stage) btnEdit.getScene().getWindow();
 				stage.setScene(scene);
 				stage.show();

@@ -3,7 +3,6 @@
 package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import javax.swing.JFrame;
 
 public class Main {
@@ -16,7 +15,6 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(true);
 		frame.setContentPane(MapPanel);							//Pass MapPanel into ContentPane as container
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//closes JFrame and terminates application when exit button is clicked
 		frame.setVisible(true);									//makes frame visible
 	
 	}

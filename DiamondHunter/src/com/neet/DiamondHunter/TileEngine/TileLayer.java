@@ -1,3 +1,5 @@
+//class responsible for loading map, loading tileset, and 'cropping' tiles from tileset.
+
 package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Graphics;
@@ -12,8 +14,6 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
-import javafx.scene.canvas.GraphicsContext;
-
 public class TileLayer 
 {
 
@@ -21,11 +21,10 @@ public class TileLayer
 	 private BufferedImage tileSet;
 	 private BufferedImage Boat;
 	 private BufferedImage Axe;
-	 //private BufferedImage Axe;
 	 private int xBoat;
-	private int yBoat;
-	private int xAxe;
-	private int yAxe;
+	 private int yBoat;
+	 private int xAxe;
+	 private int yAxe;
 	 
 	 public TileLayer(int [][] currentMap)
 	 {
@@ -106,14 +105,6 @@ public class TileLayer
 		 layer.xBoat=12;
 		 layer.yBoat=4;
 		 
-		 /*	 Items item=new Items();
-		 item.setBoatCoordinate(12, 4);
-		 item.setAxeCoordinate(26, 37);
-		 
-		 layer.Boat=item.loadItem("items.jpg");
-		 layer.Axe=item.loadItem("items.jpg");
-		*/ 
-		 
 		 return layer;
 	 }
 	 
@@ -161,21 +152,6 @@ public class TileLayer
 
 	 final int SIZE=16;
 	 
-	/*    public void drawBoat(Graphics g){
-	       int sx= 12;
-	       int sy=4;
-	    	
-	    	//g.drawImage(Item, sx, sy, SIZE,SIZE, xBoat*SIZE, yBoat*SIZE, SIZE, SIZE, null);
-	       g.drawImage(Boat,sy*16, sx*16,null);
-	    }
-	    
-	    public void drawAxe(Graphics g){
-		       int sx= 26;
-		       int sy=37;
-	    	System.out.println("test");
-	        g.drawImage(Axe, sy*16, sx*16,null);
-	    }*/
-	 
 	 
 	 public void DrawItem(Graphics g){
 		  int sx=0;
@@ -186,7 +162,7 @@ public class TileLayer
 	      
 			
 		try {
-			Scanner position = new Scanner(new File("Position.txt"));
+			Scanner position = new Scanner(new File("Position.txt"));	//Reads coordinates from text file
 			if (position!=null){
 				sx=position.nextInt();
 				sy=position.nextInt();
