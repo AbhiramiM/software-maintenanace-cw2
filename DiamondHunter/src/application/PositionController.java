@@ -1,38 +1,50 @@
-//Controller class for Edit boat and axe position screen in GUI. 
-
 package application;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
+import javax.swing.JFrame;
+
+import com.neet.DiamondHunter.GameState.*;
 import com.neet.DiamondHunter.Main.Game;
+import com.neet.DiamondHunter.Main.GamePanel;
+import com.neet.DiamondHunter.TileEngine.*;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class PositionController {
+	/*
+	public PositionController(){
+		super();
+		String bpos;
+		String apos;
+	}*/
 	
-	@FXML private Button btnConfirm;	//Initialises the button Save and Play with fx id btnConfirm
-	@FXML private TextField txtBoat;	//Initialises textfield for boat positions with fx id txtBoat
-	@FXML private TextField txtAxe;		//Initialises textfield for axe positions with fx id txtBoat
+	@FXML private Button btnConfirm;
+	@FXML private Button btnMap;	
+	@FXML private TextField txtBoat;	
+	@FXML private TextField txtAxe;
 	
-	//Creates new string variables to store input
 	private String boatpos="";
 	private String axepos="";
 	
 	
 	
-	 @FXML protected void Confirm(ActionEvent event) {		//when Save and Play button is clicked, this method is invoked
+	 @FXML protected void Confirm(ActionEvent event) {
+		//boatpos= txtBoat.getText();
+		//axepos= txtAxe.getText();
 		
-		//String variables that take user input in textfields
 		boatpos=txtBoat.getText();
 		axepos=txtAxe.getText();
 		
 		
 		try{
-		    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");	//Reads user inputed coordinates from a text file called Position.text
+		    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");
 		    writer.println(boatpos);
 		    writer.println(axepos);
 		    writer.close();
@@ -40,6 +52,58 @@ public class PositionController {
 			e.printStackTrace();
 		}
 		
-		Game.main(null);		//Invokes main function in Game.java which is responsible for running game with updated boat and axe positions					
-	   }
+		 JFrame window = new JFrame("Diamond Hunter");
+			window.add(new GamePanel());
+			window.setResizable(false);
+			window.pack();
+			window.setLocationRelativeTo(null);
+			window.setVisible(true);
+		
+		//Game.main(null);
+		
+				/* 
+		
+		StringTokenizer stb = new StringTokenizer(boatpos, " ");
+		 int x = Integer.parseInt(stb.nextToken());
+		 int y = Integer.parseInt(stb.nextToken());
+		
+			StringTokenizer sta = new StringTokenizer(axepos, " ");
+			 int a = Integer.parseInt(sta.nextToken());
+			 int b = Integer.parseInt(sta.nextToken());
+			 */
+
+			 //Game.main(null);
+		 	//System.out.printf("%d\n%d\n%d\n%d",x,y,a,b);							
+	    }
+	 
+	 @FXML protected void Map(ActionEvent event) {			
+		//Platform.exit();
+			boatpos=txtBoat.getText();
+			axepos=txtAxe.getText();
+			
+			
+			try{
+			    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");
+			    writer.println(boatpos);
+			    writer.println(axepos);
+			    writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			com.neet.DiamondHunter.TileEngine.Main.main(null);
+		
+	    }
+/*	 public String getBoatPos(){
+		 return this.boatpos;
+	 }
+	
+	 public String getAxePos(){
+		 return this.axepos;
+	 }*/
+	/* public int Convert(String string){
+		 StringTokenizer st = new StringTokenizer(string, " ");
+		 int x = Integer.parseInt(st.nextToken());
+		 int y = Integer.parseInt(st.nextToken());
+	 }*/
 }

@@ -1,22 +1,31 @@
-//class responsible for loading map, loading tileset, and 'cropping' tiles from tileset.
-
 package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
+
+import javafx.scene.canvas.GraphicsContext;
 
 public class TileLayer 
 {
 
 	 private int [][] map;												//create 2D array map
 	 private BufferedImage tileSet;
+	 private BufferedImage Boat;
+	 private BufferedImage Axe;
+	 //private BufferedImage Axe;
+	 private int xBoat;
+	private int yBoat;
+	private int xAxe;
+	private int yAxe;
 	 
 	 public TileLayer(int [][] currentMap)
 	 {
@@ -31,6 +40,9 @@ public class TileLayer
 		}
 		
 		tileSet = LoadtileSet("testtileset.jpg");
+		Boat = LoadItem("items.gif",0);
+		Axe=LoadItem("items.gif",1);
+		
 	 }
 	 
 	 public TileLayer(int width, int height)			//Constructor taking in width and height to initialise map
@@ -86,7 +98,21 @@ public class TileLayer
 			 }
 		 }
 		 
-		 layer.tileSet = layer.LoadtileSet("testtileset.jpg");		//loads tile set called "testtileset.jpg". Also reads .png files. Java supports only limited file types
+		 layer.tileSet = layer.LoadtileSet("testtileset.jpg");	//loads tile set called "testtileset.jpg". Also reads .png files. Java supports only limited file types
+		 layer.Boat=layer.LoadItem("items.gif",0);
+		 layer.Axe=layer.LoadItem("items.gif",1);
+		 layer.xAxe = 26;
+		 layer.yAxe = 37;
+		 layer.xBoat=12;
+		 layer.yBoat=4;
+		 
+		 /*	 Items item=new Items();
+		 item.setBoatCoordinate(12, 4);
+		 item.setAxeCoordinate(26, 37);
+		 
+		 layer.Boat=item.loadItem("items.jpg");
+		 layer.Axe=item.loadItem("items.jpg");
+		*/ 
 		 
 		 return layer;
 	 }
@@ -103,8 +129,88 @@ public class TileLayer
 			System.out.println("Error loading test tile set image!"); //loads this message if try() doesn't execute.
 		 }
 		 
+		 //System.out.println("Test");
 		 return testImage;											//returns loaded image
 	 }
+	 
+	 public BufferedImage LoadItem(String fileName,int Type)				//method to return BufferedImage
+	 {
+		 BufferedImage testImage = null;							//initialise testImage to null
+		 BufferedImage Item = null;
+		
+		 try														//ImageIO needs to throw exception.
+		 {
+			testImage = ImageIO.read(new File(fileName));
+			
+			if(Type==0){
+				Item=testImage.getSubimage(0, 16, 16, 16);
+			}
+			
+			if(Type==1){
+				Item= testImage.getSubimage(16, 16, 16, 16);
+			}
+			
+			//load image file into testImage
+		 }catch(IOException e)										//catch IOException e
+		 {
+			System.out.println("Error loading test tile set image!"); //loads this message if try() doesn't execute.
+		 }
+		 return Item;
+											//returns loaded image
+	 }
+
+	 final int SIZE=16;
+	 
+	/*    public void drawBoat(Graphics g){
+	       int sx= 12;
+	       int sy=4;
+	    	
+	    	//g.drawImage(Item, sx, sy, SIZE,SIZE, xBoat*SIZE, yBoat*SIZE, SIZE, SIZE, null);
+	       g.drawImage(Boat,sy*16, sx*16,null);
+	    }
+	    
+	    public void drawAxe(Graphics g){
+		       int sx= 26;
+		       int sy=37;
+	    	System.out.println("test");
+	        g.drawImage(Axe, sy*16, sx*16,null);
+	    }*/
+	 
+	 
+	 public void DrawItem(Graphics g){
+		  int sx=0;
+	      int sy=0;
+	      int sa=0;
+	      int sb=0;
+	      
+	      
+			
+		try {
+			Scanner position = new Scanner(new File("Position.txt"));
+			if (position!=null){
+				sx=position.nextInt();
+				sy=position.nextInt();
+				sa=position.nextInt();
+				sb=position.nextInt();
+			}	
+			
+		} 
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+	
+			sx=12;
+			sy=4;
+			sa=26;
+			sb=37;
+			e.printStackTrace();
+		}
+	      
+	      
+	       g.drawImage(Boat,sy*16, sx*16,null);
+	       g.drawImage(Axe, sb*16, sa*16,null);
+	    	
+	 }
+	 
 	 
 	 public void DrawLayer (Graphics g)
 	 {
@@ -112,14 +218,14 @@ public class TileLayer
 			{
 				for(int x=0; x<map[y].length; x++)
 				{
-					int index = map [x][y];							//index is at the top right corner of every tile. counts across the tileset.
-					int exceedWidth = 0;							//initialise exceedWidth. Required to make sure index is reset for a tile that is starting in a new row
+					int index = map [y][x];							//index counts tiles across
+					int exceedWidth = 0;							//initialise exceedWidth. Required to make sure index is reset.
 					
-					if(index > (tileSet.getWidth() / Engine.TILE_WIDTH) - 1)	//index is updated to top corner of first tile in the beginning of next row. Dividing will give number of tiles in currentRow
+					if(index > (tileSet.getWidth() / Engine.TILE_WIDTH) - 1)	
 					{
-					//to make sure index doesn't exceed width of entire tile set. -1 since array index starts at 0
+					//to make sure index doesn't exceed width of entire tile set. -1 is included since array index starts at 0
 						exceedWidth++;		
-						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		
+						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		//index is updated to first tile in the beginning of second row
 					}
 					//draws the corners of each tile rectangle using x, y, TILE_WDTH, and TILE_HEIGHT values
 					g.drawImage(tileSet, x * Engine.TILE_WIDTH, y * Engine.TILE_HEIGHT, (x * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (y * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, index * Engine.TILE_WIDTH, exceedWidth * Engine.TILE_HEIGHT, (index * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (exceedWidth * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, null);
@@ -127,5 +233,7 @@ public class TileLayer
 					
 				}
 			}
+		 	 
+		 
 	 }
 }

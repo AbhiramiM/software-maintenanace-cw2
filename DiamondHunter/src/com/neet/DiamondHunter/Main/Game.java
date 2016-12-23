@@ -21,6 +21,7 @@ public class Game {
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		
 	}
 	
 }
