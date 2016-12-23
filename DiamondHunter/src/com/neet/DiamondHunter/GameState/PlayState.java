@@ -181,52 +181,25 @@ public class PlayState extends GameState {
 	
 	private void populateItems() {
 		
-		//PositionController pos = new PositionController();
-		
-		//String boatpos = pos.getBoatPos();
-		//String axepos = pos.getAxePos();
-		
-	
-	
-		
-		//System.out.printf("%s",pos.getBoatPos());
-	//	System.out.printf("%s",pos.getBoatPos());
-	//	System.out.printf("%d", a);
-		
-		/*
-		if (axepos == "" && boatpos == ""){
-			x=12;
-			y=4;
-			a=26;
-			b=37;
-			
-		}
-		else{
-		StringTokenizer stb = new StringTokenizer(boatpos, " ");
-		  x = Integer.parseInt(stb.nextToken());
-		  y = Integer.parseInt(stb.nextToken());
-		 
-		StringTokenizer sta = new StringTokenizer(axepos, " ");
-		  a = Integer.parseInt(sta.nextToken());
-		  b = Integer.parseInt(sta.nextToken());
-		}
-		*/
-
 		int x=0,y=0,a=0,b=0;
 			
 		try {
-			Scanner position = new Scanner(new File("Position.txt"));
+			Scanner position = new Scanner(new File("Position.txt"));	//Reads boat and axe positions from a text file
 			if (position!=null){
+				//Coordinates for boat are scanned in as integers
 				x=position.nextInt();
 				y=position.nextInt();
+				//Coordinates for axe are scanned in as integers
 				a=position.nextInt();
 				b=position.nextInt();
 			}	
 			
-		} 
+		}
+		//if try statement doesn't execute, then the default boat and axe values in catch statement are displayed in the game
 		catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-	
+			
+			//default boat and axe coordinates
 			x=12;
 			y=4;
 			a=26;
@@ -240,33 +213,15 @@ public class PlayState extends GameState {
 		
 		item = new Item(tileMap);
 		item.setType(Item.AXE);
-		//item.setTilePosition(26, 37);
 		item.setTilePosition(a, b);
 		items.add(item);
-		
-		item = new Item(tileMap);
-		item.setType(Item.BOAT);
-		//item.setTilePosition(12, 4);
-		item.setTilePosition(x, y);
-		items.add(item);
-		
-	}
-/*
-	public void populateItems(int x,int y,int a, int b) {
-		
-		Item item;
 		
 		item = new Item(tileMap);
 		item.setType(Item.BOAT);
 		item.setTilePosition(x, y);
 		items.add(item);
 		
-		item = new Item(tileMap);
-		item.setType(Item.AXE);
-		item.setTilePosition(a, b);
-		items.add(item);
 	}
-	*/
 	
 	public void update() {
 		

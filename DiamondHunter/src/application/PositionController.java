@@ -1,47 +1,38 @@
+//Controller class for Edit boat and axe position screen in GUI. 
+
 package application;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.StringTokenizer;
 
-import com.neet.DiamondHunter.GameState.*;
 import com.neet.DiamondHunter.Main.Game;
-import com.neet.DiamondHunter.Manager.GameStateManager;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class PositionController {
-	/*
-	public PositionController(){
-		super();
-		String bpos;
-		String apos;
-	}*/
 	
-	@FXML private Button btnConfirm;
-	@FXML private Button btnCancel;	
-	@FXML private TextField txtBoat;	
-	@FXML private TextField txtAxe;
+	@FXML private Button btnConfirm;	//Initialises the button Save and Play with fx id btnConfirm
+	@FXML private TextField txtBoat;	//Initialises textfield for boat positions with fx id txtBoat
+	@FXML private TextField txtAxe;		//Initialises textfield for axe positions with fx id txtBoat
 	
+	//Creates new string variables to store input
 	private String boatpos="";
 	private String axepos="";
 	
 	
 	
-	 @FXML protected void Confirm(ActionEvent event) {
-		//boatpos= txtBoat.getText();
-		//axepos= txtAxe.getText();
+	 @FXML protected void Confirm(ActionEvent event) {		//when Save and Play button is clicked, this method is invoked
 		
+		//String variables that take user input in textfields
 		boatpos=txtBoat.getText();
 		axepos=txtAxe.getText();
 		
 		
 		try{
-		    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");
+		    PrintWriter writer = new PrintWriter("Position.txt", "UTF-8");	//Reads user inputed coordinates from a text file called Position.text
 		    writer.println(boatpos);
 		    writer.println(axepos);
 		    writer.close();
@@ -49,39 +40,6 @@ public class PositionController {
 			e.printStackTrace();
 		}
 		
-		Game.main(null);
-		
-				/* 
-		
-		StringTokenizer stb = new StringTokenizer(boatpos, " ");
-		 int x = Integer.parseInt(stb.nextToken());
-		 int y = Integer.parseInt(stb.nextToken());
-		
-			StringTokenizer sta = new StringTokenizer(axepos, " ");
-			 int a = Integer.parseInt(sta.nextToken());
-			 int b = Integer.parseInt(sta.nextToken());
-			 */
-
-			 //Game.main(null);
-		 	//System.out.printf("%d\n%d\n%d\n%d",x,y,a,b);							
-	    }
-	 
-	 @FXML protected void Cancel(ActionEvent event) {			
-		//Platform.exit();
-		 System.out.printf(boatpos);
-		 System.out.printf(axepos);
-		
-	    }
-/*	 public String getBoatPos(){
-		 return this.boatpos;
-	 }
-	
-	 public String getAxePos(){
-		 return this.axepos;
-	 }*/
-	/* public int Convert(String string){
-		 StringTokenizer st = new StringTokenizer(string, " ");
-		 int x = Integer.parseInt(st.nextToken());
-		 int y = Integer.parseInt(st.nextToken());
-	 }*/
+		Game.main(null);		//Invokes main function in Game.java which is responsible for running game with updated boat and axe positions					
+	   }
 }

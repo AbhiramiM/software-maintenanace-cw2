@@ -1,3 +1,5 @@
+//class responsible for loading map, loading tileset, and 'cropping' tiles from tileset.
+
 package com.neet.DiamondHunter.TileEngine;
 
 import java.awt.Graphics;
@@ -110,14 +112,14 @@ public class TileLayer
 			{
 				for(int x=0; x<map[y].length; x++)
 				{
-					int index = map [y][x];							//index counts tiles across
-					int exceedWidth = 0;							//initialise exceedWidth. Required to make sure index is reset.
+					int index = map [x][y];							//index is at the top right corner of every tile. counts across the tileset.
+					int exceedWidth = 0;							//initialise exceedWidth. Required to make sure index is reset for a tile that is starting in a new row
 					
-					if(index > (tileSet.getWidth() / Engine.TILE_WIDTH) - 1)	
+					if(index > (tileSet.getWidth() / Engine.TILE_WIDTH) - 1)	//index is updated to top corner of first tile in the beginning of next row. Dividing will give number of tiles in currentRow
 					{
-					//to make sure index doesn't exceed width of entire tile set. -1 is included since array index starts at 0
+					//to make sure index doesn't exceed width of entire tile set. -1 since array index starts at 0
 						exceedWidth++;		
-						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		//index is updated to first tile in the beginning of second row
+						index = index - (tileSet.getWidth() / Engine.TILE_WIDTH);		
 					}
 					//draws the corners of each tile rectangle using x, y, TILE_WDTH, and TILE_HEIGHT values
 					g.drawImage(tileSet, x * Engine.TILE_WIDTH, y * Engine.TILE_HEIGHT, (x * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (y * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, index * Engine.TILE_WIDTH, exceedWidth * Engine.TILE_HEIGHT, (index * Engine.TILE_WIDTH) + Engine.TILE_WIDTH, (exceedWidth * Engine.TILE_HEIGHT) + Engine.TILE_HEIGHT, null);

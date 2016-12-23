@@ -17,6 +17,6 @@ public class PanelGraphics extends JPanel
 	{
 		super.paintComponent(g);							//calls paintComponent from JPanel
 		
-		layer.DrawLayer(g);
+		layer.DrawLayer(g);									//invokes DrawLayer method on layer and 'crops' the tileset.
 	}
 }
